@@ -29,7 +29,7 @@ const SignatureScreen = () => {
                 <Text style={{color: 'white', fontSize:20, top: '30%', marginLeft: 20}}>Aproveite...</Text>
 
             <Button colorGradient title={'FAZER LOGIN'} onPress={() => navigate('Login') } style={{top: '40%', marginLeft: 20}} />
-            <Button colorGradient={false} title={'ASSINAR'} onPress={() => navigate('Login') } style={{top: '40%', marginLeft: 20}} />
+            <Button colorGradient={false} title={'ASSINAR'} onPress={() => navigate('Signup') } style={{top: '40%', marginLeft: 20}} />
     </Background>
     
     </SafeAreaView>

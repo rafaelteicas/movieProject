@@ -9,6 +9,7 @@ import SignatureScreen from './screens/SignatureScreen'
 import Login from './screens/Login/Login'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Icon from 'react-native-vector-icons/Ionicons'
+import Signup from './screens/Signup/Signup'
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -47,6 +48,8 @@ const App = () => {
           <Stack.Screen name='Splash' component={Splash} options={{headerShown: false}} />
           <Stack.Screen name='SignatureScreen' component={SignatureScreen} options={{headerShown: false}} />
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}} />
+          <Stack.Screen name='Signup' component={Signup} options={{headerShown: false}} />
+
         </Stack.Navigator>
       </NavigationContainer>
     </>

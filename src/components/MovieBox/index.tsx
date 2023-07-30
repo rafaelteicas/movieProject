@@ -1,8 +1,8 @@
-import { View, Text, Pressable, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, Pressable, StyleSheet, Dimensions, ImageBackground, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Image } from '../../screens/Home/style';
 import axios from 'axios';
+import { Movie } from '../../screens/Home/Home';
 
 const { width, height } = Dimensions.get('window')
 
@@ -13,40 +13,47 @@ interface categoryProps {
     name?: any;
     isFirst?: boolean;
     isSelected?: boolean;
-    image?: string
+    image?: string;
+    data?: any;
 }
 
 
 
-const MovieBox = ({title, name, onPress, isFirst, isSelected, image }: categoryProps) => {
-  return (
-    <Pressable onPress={onPress} style={[styles.container, isFirst? {marginLeft: 24} : {}]}>
-            <View style={[styles.iconContainer, isSelected? { backgroundColor: '#000' }: null]}>
-                <Image style={styles.icon} source={ require('../../assets/test.jpg') } />
-                <Text style={styles.title}>{title}</Text>
+const MovieBox = ({ title, name, onPress, isFirst, isSelected, data }: categoryProps) => {
+
+
+
+
+
+
+    return (
+        <Pressable onPress={onPress} style={[styles.container, isFirst ? { marginLeft: 24 } : {}]}>
+            <View >
+                <Image style={styles.icon} source={{ uri: 'https://image.tmdb.org/t/p/w500' + data.item.poster_path }} />
+                <Text style={styles.title}>{data.item.title}</Text>
             </View>
         </Pressable>
-  )
+    )
 }
 
 const styles = StyleSheet.create({
     container: {
         marginHorizontal: 12,
-        width: width/2,
+        width: width / 2,
     },
     title: {
-        color: 'white',
+        color: 'red',
     },
     iconContainer: {
-        backgroundColor: 'white',
-        height: height/3,
+        height: height / 3,
         borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
     },
     icon: {
-        color: 'white',
-        width: width/2,
+        width: 200,
+        height: 300
+
     }
 })
 
