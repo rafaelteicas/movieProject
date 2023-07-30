@@ -1,6 +1,6 @@
 import { styled } from "styled-components/native";
 
-const HeadeView = styled.View`
+const HeaderView = styled.View`
     margin: 10px;
     flex-direction: row;
     justify-content: space-between;
@@ -11,6 +11,6 @@ const Text = styled.Text`
     font-size: 18px;
 `
 export {
-    HeadeView,
+    HeaderView,
     Text
 }

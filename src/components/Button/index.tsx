@@ -4,13 +4,14 @@ import { TouchableOpacityProps } from 'react-native'
 
 interface myButton extends TouchableOpacityProps {
     title?: string,
-
+    colorGradient: boolean
 }
 
-const Button = ({title, ...props}: myButton) => {
+const Button = ({colorGradient, title, ...props}: myButton) => {
   return (
     <ButtonContainer {...props}>
-    <LinearButton colors={['#5a1cc5', '#5e28b9']} {...props}>
+     
+    <LinearButton colors={colorGradient?  ['#5a1cc5', '#5e28b9'] : ['#303030','#292929'] }>
             <Text>{title}</Text>
     </LinearButton>
     </ButtonContainer>

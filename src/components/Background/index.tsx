@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 import React from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -7,13 +7,16 @@ interface bgProps {
   y?: number
 }
 
+const {width, height} = Dimensions.get('window')
+ 
 const Background = ({children, y = 1}: bgProps) => {
     return (
       <LinearGradient
           colors={['#000', 'rgb(47, 19, 97)']}
           style={{
-            width: '100%',
-            height: '100%',
+            width,
+            height,
+            position: 'absolute'
           }}
           start={{x: 0, y:0}}
           end={{ x: 0.5, y:y}}>

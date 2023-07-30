@@ -23,9 +23,13 @@ const SignatureScreen = () => {
                 style={{position: 'absolute', width: width, height: height,  bottom: 0}} 
                 start={{x: 0.5, y:0}}
                 end={{x: 0.5, y:1}}
-            />
+                />
         </View>
-            <Button title={'Fazer login'} onPress={() => navigate('Home') } />
+                <Text style={{color: 'white', fontSize:30, top: '30%', marginLeft: 20}}>Milhares de filmes e series pra voce</Text>
+                <Text style={{color: 'white', fontSize:20, top: '30%', marginLeft: 20}}>Aproveite...</Text>
+
+            <Button colorGradient title={'FAZER LOGIN'} onPress={() => navigate('Login') } style={{top: '40%', marginLeft: 20}} />
+            <Button colorGradient={false} title={'ASSINAR'} onPress={() => navigate('Login') } style={{top: '40%', marginLeft: 20}} />
     </Background>
     
     </SafeAreaView>
