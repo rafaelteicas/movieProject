@@ -5,7 +5,7 @@ import Loading from '../../components/Loading';
 
 
 
-const index = () => {
+const Splash = () => {
   return (
     <>
     <Background>
@@ -20,4 +20,4 @@ const index = () => {
 }
 
 
-export default index
+export default Splash
