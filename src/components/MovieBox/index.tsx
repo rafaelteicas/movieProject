@@ -21,14 +21,9 @@ interface categoryProps {
 
 const MovieBox = ({ title, name, onPress, isFirst, isSelected, data }: categoryProps) => {
 
-
-
-
-
-
     return (
         <Pressable onPress={onPress} style={[styles.container, isFirst ? { marginLeft: 24 } : {}]}>
-            <View >
+            <View>
                 <Image style={styles.icon} source={{ uri: 'https://image.tmdb.org/t/p/w500' + data.item.poster_path }} />
                 <Text style={styles.title}>{data.item.title}</Text>
             </View>
@@ -40,19 +35,19 @@ const styles = StyleSheet.create({
     container: {
         marginHorizontal: 12,
         width: width / 2,
+        marginBottom: 40
     },
     title: {
-        color: 'red',
+        color: 'white',
+        bottom: 0
+
     },
     iconContainer: {
-        height: height / 3,
         borderRadius: 8,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     icon: {
         width: 200,
-        height: 300
+        height: 300,
 
     }
 })

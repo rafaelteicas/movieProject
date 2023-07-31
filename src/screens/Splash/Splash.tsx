@@ -8,20 +8,20 @@ import { useNavigation } from '@react-navigation/native';
 
 const Splash = () => {
 
-  const {navigate} = useNavigation()
+  const { navigate } = useNavigation()
 
   useEffect(() => {
-    setTimeout( () => navigate('SignatureScreen') ,2000)
+    setTimeout(() => navigate('SignatureScreen'), 2000)
   }, [])
 
   return (
     <>
-    <Background>
-      <SplashScreen>
-        <Text>Ola</Text>
-      </SplashScreen>
+      <Background>
+        <SplashScreen>
+          <Text>Ola</Text>
+        </SplashScreen>
       </Background>
-    <Loading /> 
+      <Loading />
     </>
 
   )
