@@ -1,7 +1,7 @@
 import { styled } from "styled-components/native";
 
 const HeaderView = styled.View`
-    margin: 10px;
+    margin: 20px;
     flex-direction: row;
     justify-content: space-between;
     z-index: 1000;

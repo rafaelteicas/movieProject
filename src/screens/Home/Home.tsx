@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import { Dimensions, FlatList, Image, SafeAreaView, ScrollView, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
@@ -8,6 +8,7 @@ import MovieBox from '../../components/MovieBox';
 import { apiCall } from '../../data/db';
 import Button from '../../components/Button';
 import auth from '@react-native-firebase/auth'
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -24,6 +25,7 @@ const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [random, setRandom] = useState<Movie | null>(null)
   const [topMovies, setTopMovies] = useState();
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     getRandomMovie()
@@ -49,7 +51,7 @@ const Home = () => {
 
   }
 
-  const numeroAleatorio = useCallback(() => Math.floor(Math.random() * 200), [])
+  const numeroAleatorio = () => Math.floor(Math.random() * 200)
 
   const getRandomMovie = async () => {
 
@@ -86,7 +88,7 @@ const Home = () => {
         }
         <View style={{ top: height * 0.4 }}>
           <Text style={{ marginLeft: 24, fontSize: 16 }}>Novos</Text>
-          <FlatList showsHorizontalScrollIndicator={false} horizontal data={movies} renderItem={(item) => <MovieBox data={item} key={item.index} />} />
+          <FlatList showsHorizontalScrollIndicator={false} horizontal data={movies} renderItem={(item) => <MovieBox data={item} key={item.index} onPress={() => navigate('MovieScreen', { nome: 'aa', data: item })} />} />
           <Text style={{ marginLeft: 24, fontSize: 16 }}>Melhores Filmes</Text>
           <FlatList showsHorizontalScrollIndicator={false} horizontal data={topMovies} renderItem={(item) => <MovieBox data={item} key={item.index} />} />
           <Button colorGradient={false} style={{ marginLeft: 24 }} title='sair' onPress={() => auth().signOut()} />

@@ -13,6 +13,7 @@ import Signup from './src/screens/Signup/Signup';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import Home from './src/screens/Home';
+import MovieScreen from './src/screens/MovieScreen/MovieScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -39,6 +40,7 @@ const Tabs = () => (
         })}
     >
         <Tab.Screen name="Home" component={Home} options={{ headerShown: false, title: '' }} />
+
     </Tab.Navigator>
 )
 
@@ -58,7 +60,10 @@ const App = () => {
             <NavigationContainer>
                 <Stack.Navigator >
                     {user ?
-                        <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} /> :
+                        <>
+                            <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
+                            <Stack.Screen name='MovieScreen' component={MovieScreen} options={{ headerShown: false }} />
+                        </> :
                         <>
                             <Stack.Screen name='Splash' component={Splash} options={{ headerShown: false }} />
                             <Stack.Screen name='SignatureScreen' component={SignatureScreen} options={{ headerShown: false }} />
