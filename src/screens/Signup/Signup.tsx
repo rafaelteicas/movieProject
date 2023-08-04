@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 const Signup = () => {
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 

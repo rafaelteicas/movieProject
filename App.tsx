@@ -1,5 +1,5 @@
 
-import { StatusBar } from 'react-native'
+import { LogBox, StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -14,13 +14,13 @@ import Signup from './src/screens/Signup/Signup';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Home from './src/screens/Home';
 import MovieScreen from './src/screens/MovieScreen/MovieScreen';
-
+import Profile from './src/screens/Profile/Profile';
+import Header, { DrawerNavigator } from './src/components/Header';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-
-const Tabs = () => (
+export const Tabs = () => (
 
     <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -28,28 +28,34 @@ const Tabs = () => (
                 let icon;
                 if (route.name === 'Home') {
                     icon = focused ? 'home' : 'home-sharp';
+                } else if (route.name === 'Profile') {
+                    icon = focused ? 'person' : 'home-sharp';
                 } else {
                     icon = focused ? 'bookmark' : 'bookmark-outline';
                 }
                 return <Icon name={icon} size={24} color={color} />;
             },
             tabBarStyle: { backgroundColor: '#0e0e0e', borderTopWidth: 0, height: 60, padding: 10 },
-            tabBarActiveTintColor: '#fff',
-            tabBarInactiveTintColor: '#fff',
+            tabBarActiveTintColor: '#530fa1',
+            tabBarInactiveTintColor: '#d1d1d1ed',
             headerShown: false,
         })}
     >
         <Tab.Screen name="Home" component={Home} options={{ headerShown: false, title: '' }} />
+        <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false, title: '' }} />
+
 
     </Tab.Navigator>
 )
 
 const App = () => {
 
+    LogBox.ignoreAllLogs();
+
     const [user, setUser] = useState();
 
     useEffect((
-        auth().onAuthStateChanged((user) => {
+        auth().onAuthStateChanged((user: any) => {
             setUser(user)
         })
     ), [])
@@ -58,10 +64,10 @@ const App = () => {
         <>
             <StatusBar backgroundColor={'black'} />
             <NavigationContainer>
-                <Stack.Navigator >
+                <Stack.Navigator initialRouteName='fb' >
                     {user ?
                         <>
-                            <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
+                            <Stack.Screen name="Drawer" component={DrawerNavigator} options={{ headerShown: false }} />
                             <Stack.Screen name='MovieScreen' component={MovieScreen} options={{ headerShown: false }} />
                         </> :
                         <>
@@ -69,7 +75,9 @@ const App = () => {
                             <Stack.Screen name='SignatureScreen' component={SignatureScreen} options={{ headerShown: false }} />
                             <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
                             <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }} />
+
                         </>
+
                     }
 
                 </Stack.Navigator>

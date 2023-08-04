@@ -1,9 +1,9 @@
 import React from 'react'
 import Header from '../../components/Header'
-import { Dimensions, FlatList, Image, SafeAreaView, ScrollView, View } from 'react-native'
+import { Dimensions, Text, Image, ImageBackground, SafeAreaView, ScrollView, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Background from '../../components/Background';
-import { Text } from './style';
+import { Title, Date, TextView, OverView } from './style';
 import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
@@ -26,26 +26,30 @@ const MovieScreen = ({ route }: any) => {
 
   return (
     <Background y={1.8}>
-      <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: width, height: height + 600 }}>
+      <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: width, height: height }}>
         <Header isMovieScreen />
-        <Text style={{ color: 'white', zIndex: 1, left: 20, fontSize: 35, top: height * 0.35, fontWeight: 'bold' }}>{route.params?.data.item.title}</Text>
-        <Text style={{ color: 'white', zIndex: 1, left: 20, fontSize: 15, top: height * 0.35 }}>{route.params?.data.item.release_date}</Text>
-        <Text style={{ color: 'white', zIndex: 1, fontSize: 15, top: height * 0.39, padding: 20 }}>{route.params?.data.item.overview}</Text>
+        <TextView>
+          <Title>{route.params?.data.item.title}</Title>
+          <Date>{route.params?.data.item.release_date}</Date>
+          <OverView>{route.params?.data.item.overview}</OverView>
+        </TextView>
 
-        <View style={{ position: 'absolute' }}>
 
+        <ImageBackground
+          resizeMode="cover"
+          style={{ width: '100%', height: height / 2, position: 'absolute' }}
+          source={{ uri: 'https://image.tmdb.org/t/p/w500' + route.params?.data.item.poster_path }}
+        >
+          <View style={{ flex: 1, justifyContent: 'flex-end' }}>
 
-          <Image
-            style={{ width, height: height * 0.55 }}
-            source={{ uri: 'https://image.tmdb.org/t/p/w500' + route.params?.data.item.poster_path }}
-          />
-          <LinearGradient
-            colors={['transparent', '#0f071f']}
-            style={{ position: 'absolute', width: width, height: height, bottom: 0 }}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 1 }}
-          />
-        </View>
+            <LinearGradient
+              colors={['transparent', '#11051acc']}
+              style={{ width: '100%', height: 150, alignItems: 'center', justifyContent: 'flex-end', zIndex: 999 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 0.7 }}
+            />
+          </View>
+        </ImageBackground>
         <View style={{ top: height * 0.4 }}>
 
         </View>

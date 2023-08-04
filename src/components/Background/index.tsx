@@ -20,7 +20,7 @@ const Background = ({ children, y = 1 }: bgProps) => {
         zIndex: 0
       }}
       start={{ x: 0, y: 0 }}
-      end={{ x: 0.5, y: y }}>
+      end={{ x: 0, y: 2 }}>
       {children}
     </LinearGradient>
   );

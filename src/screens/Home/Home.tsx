@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import { Dimensions, FlatList, Image, SafeAreaView, ScrollView, View } from 'react-native'
+import { Dimensions, FlatList, Image, ImageBackground, SafeAreaView, ScrollView, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Background from '../../components/Background';
 import { Text } from './style';
@@ -25,7 +25,7 @@ const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [random, setRandom] = useState<Movie | null>(null)
   const [topMovies, setTopMovies] = useState();
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation<any>();
 
   useEffect(() => {
     getRandomMovie()
@@ -63,7 +63,7 @@ const Home = () => {
 
 
   return (
-    <Background y={0.6}>
+    <Background>
       <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: width, height: height + 600 }}>
         <Header />
         {random && (
@@ -72,16 +72,17 @@ const Home = () => {
             <View style={{ position: 'absolute' }}>
 
 
-              <Image
-                style={{ width, height: height * 0.55 }}
+              <ImageBackground
+                style={{ width, height: height / 2, position: 'absolute' }}
                 source={{ uri: 'https://image.tmdb.org/t/p/w500' + random.poster_path }}
-              />
-              <LinearGradient
-                colors={['transparent', '#2a1157']}
-                style={{ position: 'absolute', width: width, height: height, bottom: 0 }}
-                start={{ x: 0.5, y: 0 }}
-                end={{ x: 0.5, y: 1 }}
-              />
+              >
+                <LinearGradient
+                  colors={['transparent', '#130918']}
+                  style={{ width: '100%', height: height / 2, alignItems: 'center', justifyContent: 'flex-end' }}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 0, y: 0.9 }}
+                />
+              </ImageBackground>
             </View>
           </>
         )
