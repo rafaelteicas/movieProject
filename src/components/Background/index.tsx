@@ -9,10 +9,10 @@ interface bgProps {
 
 const { width, height } = Dimensions.get('window')
 
-const Background = ({ children, y = 1 }: bgProps) => {
+const Background = ({ children  }: bgProps) => {
   return (
     <LinearGradient
-      colors={['#000', 'rgb(47, 19, 97)']}
+      colors={['#290b38', '#000']}
       style={{
         width,
         height,
@@ -20,7 +20,7 @@ const Background = ({ children, y = 1 }: bgProps) => {
         zIndex: 0
       }}
       start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 2 }}>
+      end={{ x: 0, y: 1.6}}>
       {children}
     </LinearGradient>
   );

@@ -60,7 +60,7 @@ const Home = () => {
     setRandom(data)
 
   }
-
+    
 
   return (
     <Background>
@@ -77,7 +77,7 @@ const Home = () => {
                 source={{ uri: 'https://image.tmdb.org/t/p/w500' + random.poster_path }}
               >
                 <LinearGradient
-                  colors={['transparent', '#130918']}
+                  colors={['transparent', '#1e0829']}
                   style={{ width: '100%', height: height / 2, alignItems: 'center', justifyContent: 'flex-end' }}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 0, y: 0.9 }}

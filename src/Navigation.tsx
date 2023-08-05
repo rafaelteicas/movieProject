@@ -1,21 +1,22 @@
-
 import { LogBox, StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import auth from '@react-native-firebase/auth'
-
-import Splash from './src/screens/Splash';
-import SignatureScreen from './src/screens/SignatureScreen';
-import Login from './src/screens/Login/Login';
-import Signup from './src/screens/Signup/Signup';
-
+import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Home from './src/screens/Home';
-import MovieScreen from './src/screens/MovieScreen/MovieScreen';
-import Profile from './src/screens/Profile/Profile';
-import Header, { DrawerNavigator } from './src/components/Header';
+import Home from './screens/Home';
+import Profile from './screens/Profile/Profile';
+import { DrawerNavigator } from './components/Header';
+import MovieScreen from './screens/MovieScreen';
+import Splash from './screens/Splash';
+import SignatureScreen from './screens/SignatureScreen';
+import Login from './screens/Login/Login';
+import Signup from './screens/Signup/Signup';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from './store';
+import { setUserAction } from './store/reducers/userReducer';
+import { useUserReducer } from './store/reducers/userReducer/useUserReducer';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,16 +49,18 @@ export const Tabs = () => (
     </Tab.Navigator>
 )
 
-const App = () => {
+export const Navigation = () => {
 
     LogBox.ignoreAllLogs();
+    const { user } = useUserReducer();
+    const { setUser } = useUserReducer();
 
-    const [user, setUser] = useState();
+    console.log(user);
+    
 
     useEffect((
         auth().onAuthStateChanged((user: any) => {
             setUser(user)
-            console.log(user, 'ESTOU NO APP');
         })
     ), [])
 
@@ -88,6 +91,3 @@ const App = () => {
         </>
     )
 }
-
-
-export default App
