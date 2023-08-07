@@ -9,6 +9,7 @@ import { utils } from '@react-native-firebase/app';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
+
 const Profile = () => {
     const {user} = useUserReducer();
     const userId = user.uid;

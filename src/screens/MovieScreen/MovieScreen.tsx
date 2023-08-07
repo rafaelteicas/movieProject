@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import { Dimensions, Text, Image, ImageBackground, SafeAreaView, ScrollView, View, Pressable } from 'react-native'
+import { Dimensions, Text, Image, ImageBackground, SafeAreaView, ScrollView, View, Button, Alert } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Background from '../../components/Background';
 import { Title, Date, TextView, OverView, Cast } from './style';
 import { useNavigation } from '@react-navigation/native';
 import { apiCall } from '../../data/db';
-import MovieBox from '../../components/MovieBox';
 import { FlatList } from 'react-native';
-import Login from '../Login/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { setMovieAction } from '../../store/reducers/movieReducer';
+import store from '@react-native-firebase/firestore';
+import { useUserReducer } from '../../store/reducers/userReducer/useUserReducer';
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,15 +25,14 @@ export interface Movie {
 }
 
 const MovieScreen = ({ route }: any) => {
-  
   const [cast, setCast] = useState([]);
-  const navigation = useNavigation;
-  
+  const {user} = useUserReducer();
   useEffect((() => {
     getMovieDetails();
   }), [])
-
+  
   const myData = route.params?.data
+  console.log(myData);
   
   const getMovieDetails = async () => {
     const data = await apiCall(`movie/${myData.item.id}/credits`);
@@ -50,16 +52,25 @@ const MovieScreen = ({ route }: any) => {
     ) 
     }
   }
+  console.log(user.uid);
+  
+  const handleFavoriteMovie = () => {
+    const subscribe = store().collection(`${user.uid}`).add({
+      data: myData
+    }).then(()=> Alert.alert('Favoritado com sucesso!')).catch(e=> console.log(e)
+    )
+  }
   
   return (
     <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: width, height: height + 200 }}>
     <Background> 
     <Header isMovieScreen />
         <TextView>
+          <Button title='favoritar' onPress={() => handleFavoriteMovie()}/>
           <Title>{route.params?.data.item.title}</Title>
           <Date>{route.params?.data.item.release_date}</Date>
           <OverView>{route.params?.data.item.overview}</OverView>
-          <FlatList horizontal data={cast} renderItem={(item) => mapCast(item)} />
+          <FlatList horizontal data={cast} renderItem={(item): any => mapCast(item)} />
          </TextView>
         <ImageBackground
           resizeMode="cover"

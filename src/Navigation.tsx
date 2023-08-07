@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store';
 import { setUserAction } from './store/reducers/userReducer';
 import { useUserReducer } from './store/reducers/userReducer/useUserReducer';
+import Favorites from './screens/Favorites/Favorites';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,9 +44,8 @@ export const Tabs = () => (
         })}
     >
         <Tab.Screen name="Home" component={Home} options={{ headerShown: false, title: '' }} />
+        <Tab.Screen name="Favorites" component={Favorites} options={{ headerShown: false, title: '' }} />
         <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false, title: '' }} />
-
-
     </Tab.Navigator>
 )
 

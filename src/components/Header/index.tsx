@@ -4,7 +4,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { HeaderView, Text, styles } from './styles'
 import { useNavigation } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import { Tabs } from '../../../App'
+import Favorites from '../../screens/Favorites/Favorites'
+import { Tabs } from '../../Navigation'
 
 
 const Drawer = createDrawerNavigator();
@@ -17,12 +18,15 @@ export const DrawerNavigator = () => {
           headerShown: false,
           headerTitle: '',
           headerTransparent: true,
-          
         }
       }>
       <Drawer.Screen 
         name="Home"
         component={Tabs}
+      />
+      <Drawer.Screen 
+        name="Favorites"
+        component={Favorites}
       />
     </Drawer.Navigator>
   )
