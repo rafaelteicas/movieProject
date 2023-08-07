@@ -1,24 +1,24 @@
-import { View, Text, Dimensions } from 'react-native'
+import { View, Text, Dimensions, SafeAreaView, ScrollView, ViewProps } from 'react-native'
 import React from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 
-interface bgProps {
+interface bgProps extends ViewProps {
   children: any;
-  y?: number
+  y?: number;
 }
 
-const { width, height } = Dimensions.get('window')
+const { width,height } = Dimensions.get('window')
 
-const Background = ({ children  }: bgProps) => {
+const Background = ({children, ...props}: bgProps) => {
   return (
+
     <LinearGradient
       colors={['#290b38', '#000']}
       style={{
+        flex: 1,
         width,
-        height,
-        position: 'absolute',
-        zIndex: 0
-      }}
+        height
+      }} 
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1.6}}>
       {children}

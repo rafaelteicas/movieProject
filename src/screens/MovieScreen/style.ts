@@ -33,11 +33,18 @@ const OverView = styled.Text`
     top:20;
     left: 20; 
 `
+const Cast = styled.Image`
+  width: 100;
+  height: 100;
+  border-radius: 50;
+  background-color: 10;
+`
 
 export {
   Image,
   Title,
   Date,
   TextView,
-  OverView
+  OverView,
+  Cast
 }

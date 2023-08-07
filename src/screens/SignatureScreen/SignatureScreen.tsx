@@ -12,9 +12,9 @@ const { width, height } = Dimensions.get('window')
 const SignatureScreen = () => {
   const { navigate } = useNavigation<any>();
   return (
+      <Background>
     <SafeAreaView>
 
-      <Background y={2.3}>
         <Header />
         <View style={{ position: 'absolute' }}>
           <Image style={{ width, height: height * 0.8, top: -40 }} source={require('../../assets/bg.jpg')} />
@@ -30,9 +30,9 @@ const SignatureScreen = () => {
 
         <Button colorGradient title={'FAZER LOGIN'} onPress={() => navigate('Login')} style={{ top: '40%', marginLeft: 20 }} />
         <Button colorGradient={false} title={'ASSINAR'} onPress={() => navigate('Signup')} style={{ top: '40%', marginLeft: 20 }} />
-      </Background>
 
     </SafeAreaView>
+      </Background>
   )
 }
 

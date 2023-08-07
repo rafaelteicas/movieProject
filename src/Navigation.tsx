@@ -55,7 +55,6 @@ export const Navigation = () => {
     const { user } = useUserReducer();
     const { setUser } = useUserReducer();
 
-    console.log(user);
     
 
     useEffect((

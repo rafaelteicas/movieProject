@@ -6,8 +6,6 @@ import Background from '../../components/Background';
 import { Text } from './style';
 import MovieBox from '../../components/MovieBox';
 import { apiCall } from '../../data/db';
-import Button from '../../components/Button';
-import auth from '@react-native-firebase/auth'
 import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
@@ -46,9 +44,7 @@ const Home = () => {
 
   const getTopMovies = async () => {
     const data = await apiCall('/movie/top_rated')
-
     setTopMovies(data.results)
-
   }
 
   const numeroAleatorio = () => Math.floor(Math.random() * 200)
@@ -64,7 +60,7 @@ const Home = () => {
 
   return (
     <Background>
-      <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: width, height: height + 600 }}>
+      <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: width, height: height + 400 }}>
         <Header />
         {random && (
           <>
@@ -91,8 +87,7 @@ const Home = () => {
           <Text style={{ marginLeft: 24, fontSize: 16 }}>Novos</Text>
           <FlatList showsHorizontalScrollIndicator={false} horizontal data={movies} renderItem={(item) => <MovieBox data={item} key={item.index} onPress={() => navigate('MovieScreen', { nome: 'aa', data: item })} />} />
           <Text style={{ marginLeft: 24, fontSize: 16 }}>Melhores Filmes</Text>
-          <FlatList showsHorizontalScrollIndicator={false} horizontal data={topMovies} renderItem={(item) => <MovieBox data={item} key={item.index} />} />
-          <Button colorGradient={false} style={{ marginLeft: 24 }} title='sair' onPress={() => auth().signOut()} />
+          <FlatList showsHorizontalScrollIndicator={false} horizontal data={topMovies} renderItem={(item) => <MovieBox data={item} key={item.index} onPress={() => navigate('MovieScreen', { nome: 'aa', data: item })} />} />
         </View>
 
       </ScrollView>
