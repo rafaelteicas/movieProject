@@ -26,24 +26,25 @@ const Favorites = () => {
         });
         return () => subscribe();
     }, [])
-
+    
     interface Props {
         data?: any;
     }
     
+    const {width, height} = Dimensions.get('window')
     const RenderFavMovies = ({data}: any) => {  
               
         return(
-            <View style={{ height, alignItems: 'center', justifyContent:'center'}}>
+            <View style={{ height, alignItems: 'center', justifyContent:'center', padding:width/6 }}>
                 <Text style={{color: 'white'}}>{data.data.item.title} </Text>
-                <Image borderRadius={100} width={100} height={100} source={{uri: `https://image.tmdb.org/t/p/w500${data.data.item.poster_path}`}} />
+                <Image borderRadius={100} width={200} height={200} source={{uri: `https://image.tmdb.org/t/p/w500${data.data.item.poster_path}`}} />
             </View>
         )
         
     }
     
+    
 
-    const {height} = Dimensions.get('window')
 
   return (
         <Background>

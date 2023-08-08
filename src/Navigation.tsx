@@ -33,7 +33,7 @@ export const Tabs = () => (
                 } else if (route.name === 'Profile') {
                     icon = 'person';
                 } else {
-                    icon = focused ? 'bookmark' : 'bookmark-outline';
+                    icon = 'bookmark'
                 }
                 return <Icon name={icon} size={24} color={color} />;
             },

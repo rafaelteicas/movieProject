@@ -15,31 +15,32 @@ const Profile = () => {
     const userId = user.uid;
     const { width, height } = Dimensions.get('window');
     const [image, setImage] = useState();
-    const [orders, setOrders] = useState();
-    const [profileImageURL, setProfileImageURL] = useState('');
-    const [username, setUsername] = useState('');
+    const [data, setData] = useState<any>();
     
     useEffect ((() => {
-      const userRef = firestore().collection('users').doc(userId);
+      const userRef = firestore().collection(`data${userId}`).onSnapshot(querySnapshot => {
+        const data = querySnapshot.docs.map(doc => {
+            return {
+                id: doc.id,
+                ...doc.data()
+            }
+        })
+        setData(data)
+      });
       const storageRef = storage().ref();
       storageRef.child(`/profile_images/${user.uid}`).getDownloadURL().then((url: any) => {
         setImage(url);
       });
-      userRef.get().then(doc => {
-          const userData: any = doc.data()             
-          setProfileImageURL(userData);
-        })
     }) , [])
+    
 
- 
     return (
         <Background>
             <View style={{ height, alignItems: 'center', justifyContent:'center'}}>
                 <Image borderRadius={width/ 2} width={200} height={200} source={{ uri: image }} />
-                 <Text style={{color: 'white', fontSize: 30}}>Rafael</Text>
-                 <Text style={{color: 'white'}}>{user.email}</Text>
+                 <Text style={{color: 'white', fontSize: 30}}>{data[0].username}</Text>
+                 <Text style={{color: 'white', marginBottom: 40}}>{user.email}</Text>
                  <Button title='sair' onPress={() => auth().signOut()} />
-
             </View>
         </Background>
     )

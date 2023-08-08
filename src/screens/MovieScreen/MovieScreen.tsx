@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import { Dimensions, Text, Image, ImageBackground, SafeAreaView, ScrollView, View, Button, Alert } from 'react-native'
+import { Dimensions, Text, Image, ImageBackground, SafeAreaView, ScrollView, View, Button, Alert, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Background from '../../components/Background';
 import { Title, Date, TextView, OverView, Cast } from './style';
@@ -12,6 +12,7 @@ import { RootState } from '../../store';
 import { setMovieAction } from '../../store/reducers/movieReducer';
 import store from '@react-native-firebase/firestore';
 import { useUserReducer } from '../../store/reducers/userReducer/useUserReducer';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const { width, height } = Dimensions.get('window');
 
@@ -66,7 +67,7 @@ const MovieScreen = ({ route }: any) => {
     <Background> 
     <Header isMovieScreen />
         <TextView>
-          <Button title='favoritar' onPress={() => handleFavoriteMovie()}/>
+          <Icon name='heart-circle-outline' size={30} color='white' onPress={handleFavoriteMovie} />
           <Title>{route.params?.data.item.title}</Title>
           <Date>{route.params?.data.item.release_date}</Date>
           <OverView>{route.params?.data.item.overview}</OverView>
