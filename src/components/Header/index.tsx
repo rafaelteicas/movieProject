@@ -63,7 +63,7 @@ const Header = ({ isMovieScreen, ...props }: myHeader) => {
       <Text style={{ color: 'white' }}>Ola</Text>
       <View style={styles.iconStyle}>
         {user ? (<Image source={{uri: image}} width={30} height={30} borderRadius={15} />)
- : (<Icon onPress={() => navigation.navigate('Home')} name='person-outline' size={18} color="#fff" />)}
+ : (<Icon onPress={() => auth()} name='person-outline' size={18} color="#fff" />)}
       </View>
     </HeaderView>
     </View>

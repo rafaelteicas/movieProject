@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import { Dimensions, FlatList, Image, ImageBackground, SafeAreaView, ScrollView, View } from 'react-native'
+import { Dimensions, FlatList, Image, ImageBackground, SafeAreaView, ScrollView, View , Button } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Background from '../../components/Background';
 import { Text } from './style';
 import MovieBox from '../../components/MovieBox';
 import { apiCall } from '../../data/db';
 import { useNavigation } from '@react-navigation/native';
-
+import auth from '@react-native-firebase/auth'
 const { width, height } = Dimensions.get('window');
 
 export interface Movie {
@@ -60,7 +60,7 @@ const Home = () => {
 
   return (
     <Background>
-      <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: width, height: height + 400 }}>
+      <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: width, height: height + 500 }}>
         <Header />
         {random && (
           <>

@@ -23,6 +23,7 @@ const Favorites = () => {
                 }
             })
             setFavorites(data);
+            console.log(data);
         });
         return () => subscribe();
     }, [])
@@ -48,6 +49,7 @@ const Favorites = () => {
 
   return (
         <Background>
+        <Text style={{color: 'white', fontSize: 24, textAlign: 'center',top: 20}}> Favoritos </Text>
         <FlatList horizontal data={favorites} renderItem={({item}: any) => <RenderFavMovies data={item} /> }/>
         </Background>
   )

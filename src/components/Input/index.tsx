@@ -9,9 +9,10 @@ interface InputProps extends TextInputProps {
     isError?: boolean;
     isNull?: boolean;
     placeholder?: string;
+    errorMsg?: any;
 }
 
-const Input = ({ isNull , placeholder, secureTextEntry, isError, title ,...props} : InputProps)  => {
+const Input = ({ errorMsg, isNull , placeholder, secureTextEntry, isError, title ,...props} : InputProps)  => {
     const [secureText, setSecureText] = useState<boolean>(!!secureTextEntry);
     const handleSecure = () => {
         setSecureText((current) => !current)
@@ -24,12 +25,12 @@ const Input = ({ isNull , placeholder, secureTextEntry, isError, title ,...props
         </Text>
         {secureTextEntry && ( <Icon name={secureText ? 'eye-outline' : 'eye-off-outline'} size={20} color={'white'} onPress={handleSecure} style={{position: 'absolute', bottom: 30, right: 10, zIndex: 1}} />) }
       <MainInput
-        style={ isError || isNull ? {borderColor: 'red'} : null }
+        style={errorMsg ? {borderColor: 'red'} : null }
         placeholder={placeholder}
         secureTextEntry= {secureText}
         {...props} 
         />
-        {isError && (<Text style={{fontSize: 12,color: 'red', marginTop: -10}}> Email ou senha invalidos </Text>)}
+        {errorMsg ? <Text style={{fontSize: 12,color: 'red', marginTop: -10}}> {errorMsg} </Text> : null }
     </View>
   )
 }
