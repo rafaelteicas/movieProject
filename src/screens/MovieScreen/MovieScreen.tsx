@@ -56,7 +56,7 @@ const MovieScreen = ({ route }: any) => {
   console.log(user.uid);
   
   const handleFavoriteMovie = () => {
-    const subscribe = store().collection(`${user.uid}`).add({
+    const subscribe = store().collection('users/favorites/' + user.uid).add({
       data: myData
     }).then(()=> Alert.alert('Favoritado com sucesso!')).catch(e=> console.log(e)
     )

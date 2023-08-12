@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Background from '../../components/Background';
-import { SplashScreen, Text } from './styles';
+import { ImageLogo, SplashScreen } from './styles';
 import Loading from '../../components/Loading';
 import { useNavigation } from '@react-navigation/native';
 
@@ -18,7 +18,7 @@ const Splash = () => {
     <>
       <Background>
         <SplashScreen>
-          <Text>Ola</Text>
+        <ImageLogo resizeMode='center' source={require('../../assets/FILMFLIX.png')} />
         </SplashScreen>
       </Background>
       <Loading />

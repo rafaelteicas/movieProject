@@ -38,7 +38,7 @@ const Signup = () => {
         console.log(storageRef);
         try {
           await storageRef;              
-          Alert.alert('Imagem enviada com sucesso');
+          Alert.alert('Usuario cadastrado com sucesso');
         } catch (e) {
           console.log(e);
         }  

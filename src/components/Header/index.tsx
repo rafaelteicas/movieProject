@@ -1,7 +1,7 @@
-import { Image, ImageProps, View } from 'react-native'
+import { Image, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { HeaderView, Text, styles } from './styles'
+import { HeaderView, ImageLogo, Text, styles } from './styles'
 import { useNavigation } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import Favorites from '../../screens/Favorites/Favorites'
@@ -60,7 +60,7 @@ const Header = ({ isMovieScreen, ...props }: myHeader) => {
         <Icon name='arrow-back' size={25} color="#fff" onPress={() => navigation.goBack()} /> :
         <Icon name='reorder-three' size={25} color="#fff" />
       }
-      <Text style={{ color: 'white' }}>Ola</Text>
+      <ImageLogo resizeMode='center' source={require('../../assets/FILMFLIX.png')} />
       <View style={styles.iconStyle}>
         {user ? (<Image source={{uri: image}} width={30} height={30} borderRadius={15} />)
  : (<Icon onPress={() => auth()} name='person-outline' size={18} color="#fff" />)}

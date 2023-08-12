@@ -27,7 +27,13 @@ const styles = StyleSheet.create({
     }
 })
 
+const ImageLogo = styled.Image`
+    width: 140;
+    height: 40;
+`
+
 export {
+    ImageLogo,
     HeaderView,
     Text,
     Title,
