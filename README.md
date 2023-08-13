@@ -1,5 +1,5 @@
 # FILMFLIX
-<img src="https://raw.githubusercontent.com/rafaelteicas/movieProject/main/src/assets/screenshot.png" />
+<img src="https://raw.githubusercontent.com/rafaelteicas/movieProject/main/src/assets/screenshot.png"> </img>
 ## About the project
 The main idea throughout the project is to test my knowledge and develop a functional application with a nice user interface, implementing things used in almost all major applications
 ## Functionalities
