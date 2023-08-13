@@ -1,0 +1,2 @@
+import "./components/Modal";
+export {};

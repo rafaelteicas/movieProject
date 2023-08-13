@@ -7,15 +7,11 @@ import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Home from './screens/Home';
 import Profile from './screens/Profile/Profile';
-import { DrawerNavigator } from './components/Header';
 import MovieScreen from './screens/MovieScreen';
 import Splash from './screens/Splash';
 import SignatureScreen from './screens/SignatureScreen';
 import Login from './screens/Login/Login';
 import Signup from './screens/Signup/Signup';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './store';
-import { setUserAction } from './store/reducers/userReducer';
 import { useUserReducer } from './store/reducers/userReducer/useUserReducer';
 import Favorites from './screens/Favorites/Favorites';
 
@@ -72,7 +68,7 @@ export const Navigation = () => {
                 <Stack.Navigator initialRouteName='fb' >
                     {user ?
                         <>
-                            <Stack.Screen name="Drawer" component={DrawerNavigator} options={{ headerShown: false }} />
+                            <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
                             <Stack.Screen name='MovieScreen' component={MovieScreen} options={{ headerShown: false }} />
                             <Stack.Screen name="Home" component={Home} options={{ headerShown: false, title: '' }} />
                         </> :
@@ -81,7 +77,6 @@ export const Navigation = () => {
                             <Stack.Screen name='SignatureScreen' component={SignatureScreen} options={{ headerShown: false }} />
                             <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
                             <Stack.Screen name='Signup' component={Signup} options={{ headerShown: false }} />
-
                         </>
 
                     }

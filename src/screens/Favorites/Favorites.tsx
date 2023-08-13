@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react'
 import Background from '../../components/Background'
 import { useUserReducer } from '../../store/reducers/userReducer/useUserReducer';
 import firestore from '@react-native-firebase/firestore';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Favorites = () => {
     const {user} = useUserReducer();
-    const [favorites,setFavorites] = useState([]);
+    const [favorites,setFavorites] = useState<any>();
     
 
     useEffect(() => {
@@ -37,10 +38,10 @@ const Favorites = () => {
             .delete()    
         }
         return(
-            <View style={{ height, alignItems: 'center', justifyContent:'center', padding:width/6 }}>
-                <Text style={{color: 'white'}}>{data.data.item.title} </Text>
+            <View style={{ alignItems: 'center', justifyContent:'center', paddingLeft: 20 }}>
                  <Image borderRadius={100} width={200} height={200} source={{uri: `https://image.tmdb.org/t/p/w500${data.data.item.poster_path}`}} />
-                 <Button title='deletar' onPress={() => handleDelete(data.id)} />
+                <Text style={{color: 'white', margin: 30}}>{data.data.item.title} </Text>
+                 <Icon name='trash-outline' color='red' size={30} onPress={() => handleDelete(data.id)} />
             </View>
         )
         

@@ -14,6 +14,7 @@ const TextView = styled.View`
   top: ${height * 0.35}  ;
   padding: 20px;
   z-index: 9999;
+  align-items: center;
   `
 
 const Title = styled.Text`
@@ -32,6 +33,7 @@ const OverView = styled.Text`
     color: white; 
     top:20;
     left: 20; 
+    margin-bottom: 20;
 `
 const Cast = styled.Image`
   width: 100;

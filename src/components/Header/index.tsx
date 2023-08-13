@@ -11,29 +11,6 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import { useUserReducer } from '../../store/reducers/userReducer/useUserReducer'
 
-const Drawer = createDrawerNavigator();
-
-export const DrawerNavigator = () => {
-  return (
-    <Drawer.Navigator
-      screenOptions={
-        {
-          headerShown: false,
-          headerTitle: '',
-          headerTransparent: true,
-        }
-      }>
-      <Drawer.Screen 
-        name="Home"
-        component={Tabs}
-      />
-      <Drawer.Screen 
-        name="Favorites"
-        component={Favorites}
-      />
-    </Drawer.Navigator>
-  )
-}
 
 interface myHeader{
   isMovieScreen?: boolean,
@@ -58,7 +35,7 @@ const Header = ({ isMovieScreen, ...props }: myHeader) => {
     <HeaderView>
       {isMovieScreen ?
         <Icon name='arrow-back' size={25} color="#fff" onPress={() => navigation.goBack()} /> :
-        <Icon name='reorder-three' size={25} color="#fff" />
+        null
       }
       <ImageLogo resizeMode='center' source={require('../../assets/FILMFLIX.png')} />
       <View style={styles.iconStyle}>

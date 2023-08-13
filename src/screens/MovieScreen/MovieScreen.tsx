@@ -1,18 +1,18 @@
+import { Dimensions, Text, Image, ImageBackground, ScrollView, View, Alert, } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import { Dimensions, Text, Image, ImageBackground, SafeAreaView, ScrollView, View, Button, Alert, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Background from '../../components/Background';
-import { Title, Date, TextView, OverView, Cast } from './style';
-import { useNavigation } from '@react-navigation/native';
+import { Title, Date, TextView, OverView } from './style';
 import { apiCall } from '../../data/db';
 import { FlatList } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { setMovieAction } from '../../store/reducers/movieReducer';
 import store from '@react-native-firebase/firestore';
 import { useUserReducer } from '../../store/reducers/userReducer/useUserReducer';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Modal from '../../components/Modal';
+import Button from '../../components/Button';
+import { SheetManager } from 'react-native-actions-sheet';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,18 +22,20 @@ export interface Movie {
   poster_path: string;
   overview: string;
   item: any,
-  data?: any
+  data?: any,
 }
 
 const MovieScreen = ({ route }: any) => {
   const [cast, setCast] = useState([]);
   const {user} = useUserReducer();
   useEffect((() => {
+    async () => {
+      await SheetManager.hide("mysheet");
+    }
     getMovieDetails();
   }), [])
-  
+
   const myData = route.params?.data
-  console.log(myData);
   
   const getMovieDetails = async () => {
     const data = await apiCall(`movie/${myData.item.id}/credits`);
@@ -53,7 +55,6 @@ const MovieScreen = ({ route }: any) => {
     ) 
     }
   }
-  console.log(user.uid);
   
   const handleFavoriteMovie = () => {
     const subscribe = store().collection('users/favorites/' + user.uid).add({
@@ -61,16 +62,23 @@ const MovieScreen = ({ route }: any) => {
     }).then(()=> Alert.alert('Favoritado com sucesso!')).catch(e=> console.log(e)
     )
   }
+
+  const {navigate} = useNavigation();
+
+  const handleToggle = async () => {
+    SheetManager.show('mysheet', {value:"data"})
+  }
   
   return (
-    <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: width, height: height + 200 }}>
     <Background> 
+      <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: width, height: height }}>
     <Header isMovieScreen />
         <TextView>
           <Icon name='heart-circle-outline' size={30} color='white' onPress={handleFavoriteMovie} />
           <Title>{route.params?.data.item.title}</Title>
           <Date>{route.params?.data.item.release_date}</Date>
           <OverView>{route.params?.data.item.overview}</OverView>
+          <Button colorGradient title='Assistir' onPress={handleToggle}/>
           <FlatList horizontal data={cast} renderItem={(item): any => mapCast(item)} />
          </TextView>
         <ImageBackground
@@ -88,9 +96,8 @@ const MovieScreen = ({ route }: any) => {
               />
           </View>
         </ImageBackground>
-
-    </Background>
         </ScrollView>
+    </Background>
   )
 }
 
